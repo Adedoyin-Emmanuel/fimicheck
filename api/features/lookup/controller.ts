@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import { lookupSchema } from "./schema";
 import { response } from "./../../utils";
-import { scrapePlateNumber } from "./scraper";
+import { scrapePlateNumber, scrapePossibleVehicleImages } from "./scraper";
 
 export default class LookupController {
   public static async getPlateNumberInfo(req: Request, res: Response) {
@@ -13,11 +13,20 @@ export default class LookupController {
       return response(res, 400, result.errors[0].message);
     }
 
-    return response(
-      res,
-      200,
-      "Plate number info retrieved successfully",
-      result.value
+    const vehicleInfo = result.value as { make: string; color: string };
+
+    const imagesResult = await scrapePossibleVehicleImages(
+      vehicleInfo.make,
+      vehicleInfo.color
     );
+
+    if (imagesResult.isFailure) {
+      return response(res, 400, imagesResult.errors[0].message);
+    }
+
+    return response(res, 200, "Plate number info retrieved successfully", {
+      vehicleInfo,
+      images: imagesResult.value,
+    });
   }
 }
