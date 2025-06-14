@@ -40,7 +40,3 @@ export const scrapePlateNumber = async (plateNumber: string) => {
     return fail("Failed to retrieve plate number info");
   }
 };
-
-scrapePlateNumber("FKJ254XA").then((result) => {
-  console.log(result);
-});
