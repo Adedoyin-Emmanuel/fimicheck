@@ -39,6 +39,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "axios": "^1.10.0",
     "body-parser": "^2.2.0",
     "cheerio": "^1.1.0",
     "cookie-parser": "^1.4.7",
