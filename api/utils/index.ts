@@ -1,18 +1,6 @@
-import response from "./response";
-import connectToDb from "./database";
-import corsOptions from "./corsOptions";
-import accessLogStream from "./accessLog";
-import transporter from "./mail.config";
-import prisma from "./prisma";
 import logger from "./logger";
+import response from "./response";
+import corsOptions from "./cors-options";
+import accessLogStream from "./access-log";
 
-
-export {
-  connectToDb,
-  response,
-  corsOptions,
-  accessLogStream,
-  transporter,
-  prisma,
-  logger
-};
+export { response, corsOptions, accessLogStream, logger };

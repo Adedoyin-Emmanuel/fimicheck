@@ -1,9 +1,10 @@
-import { Request, Response, NextFunction } from "express";
-import response from "../utils/response";
-import logger from "../utils/logger";
-import { SOMETHING_WENT_WRONG } from "../constants/errors";
-import { IS_PRODUCTION } from "./../constants/app";
 import Joi from "joi";
+import type { Request, Response, NextFunction } from "express";
+
+import logger from "../utils/logger";
+import response from "../utils/response";
+import { IS_PRODUCTION } from "./../constants/app";
+import { SOMETHING_WENT_WRONG } from "../constants/errors";
 
 const useErrorHandler = (
   err: Error,
@@ -14,7 +15,7 @@ const useErrorHandler = (
   logger.error(err);
 
   if (err instanceof Joi.ValidationError) {
-    return response(res, 400, err.details[0].message);
+    return response(res, 400, err?.details[0]?.message as string);
   }
 
   return response(
