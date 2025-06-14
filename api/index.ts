@@ -27,7 +27,7 @@ app.use(
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/api/", baseRouter);
+app.use("/v1", baseRouter);
 
 app.use(useNotFound);
 app.use(useErrorHandler);
