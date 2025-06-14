@@ -1,0 +1,29 @@
+{
+  "name": "fimicheck-bot",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "test": "vitest",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.8.38",
+    "@cloudflare/workers-types": "^4.20250614.0",
+    "@types/debug": "^4.1.12",
+    "typescript": "^5.8.3",
+    "vitest": "3.2.3",
+    "wrangler": "^4.20.0"
+  },
+  "dependencies": {
+    "@codebam/cf-workers-telegram-bot": "^9.1.1",
+    "@logsnag/node": "^1.0.1",
+    "axios": "^1.10.0",
+    "debug": "^4.4.1",
+    "dotenv": "^16.5.0",
+    "mongoose": "^8.15.2",
+    "telegraf": "^4.16.3"
+  }
+}
