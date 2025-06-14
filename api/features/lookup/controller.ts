@@ -5,7 +5,7 @@ import { response } from "./../../utils";
 import { scrapePlateNumber } from "./scraper";
 
 export default class LookupController {
-  static async getPlateNumberInfo(req: Request, res: Response) {
+  public static async getPlateNumberInfo(req: Request, res: Response) {
     const values = await lookupSchema.validateAsync(req.body);
     const result = await scrapePlateNumber(values.plateNumber);
 

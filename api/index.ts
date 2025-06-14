@@ -6,11 +6,11 @@ import express from "express";
 import "express-async-errors";
 import bodyParser from "body-parser";
 
+import { PORT } from "./constants/app";
 import corsOptions from "./utils/cors-options";
 import baseRouter from "./features/base/route";
-import { accessLogStream, logger } from "./utils";
+import lookupRouter from "./features/lookup/route";
 import { useErrorHandler, useNotFound } from "./middlewares/";
-import { PORT, IS_PRODUCTION, MORGAN_CONFIG } from "./constants/app";
 
 dotenv.config();
 
@@ -19,19 +19,16 @@ const app = express();
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json({}));
-app.use(
-  morgan(MORGAN_CONFIG, {
-    stream: IS_PRODUCTION ? accessLogStream : process.stdout,
-  })
-);
+app.use(morgan("dev"));
 app.use(helmet());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "1mb" }));
 
 app.use("/v1", baseRouter);
+app.use("/v1/lookup", lookupRouter);
 
 app.use(useNotFound);
 app.use(useErrorHandler);
 
 export const server = app.listen(PORT, () => {
-  logger.info(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
