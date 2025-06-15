@@ -14,8 +14,10 @@ export const metadata: Metadata = {
     "vehicle details",
   ],
   authors: [{ name: "FimiCheck" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
+  icons: {
+    icon: "/fimicheck.png",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased min-h-screen bg-[#f7f7f8]">
-        <Toaster />
+        <Toaster position="top-center" />
         {children}
       </body>
     </html>
