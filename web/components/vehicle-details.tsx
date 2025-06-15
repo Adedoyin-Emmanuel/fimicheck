@@ -1,5 +1,6 @@
-import { Car, Palette } from "lucide-react";
 import { Afacad } from "next/font/google";
+import { Car, Palette } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 
 const afacad = Afacad({

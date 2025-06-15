@@ -1,4 +1,5 @@
 import { Afacad } from "next/font/google";
+
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const afacad = Afacad({

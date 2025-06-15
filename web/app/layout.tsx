@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Toaster } from "@/components/ui/sonner";
+
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "FimiCheck - Nigerian Vehicle Plate Lookup",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     "car information",
     "vehicle details",
   ],
-  authors: [{ name: "FimiCheck" }],
+  authors: [{ name: "Adedoyin Emmanuel Adeniyi" }],
   robots: "index, follow",
   icons: {
     icon: "/fimicheck.png",

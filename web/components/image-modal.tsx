@@ -1,5 +1,6 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Afacad } from "next/font/google";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
