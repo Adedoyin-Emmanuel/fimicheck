@@ -15,7 +15,7 @@ const handleRateLimit = async (error: any) => {
 
 const development = async (bot: Telegraf<Context<Update>>) => {
 	try {
-		console.log('Starting development');
+		
 		const botInfo = (await bot.telegram.getMe()).username;
 
 		logger('Bot is running on dev mode');

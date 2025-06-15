@@ -1,3 +1,3 @@
-import errorHandler from './error';
+import errorHandler from "./error";
 
 export { errorHandler };

@@ -15,7 +15,7 @@
     "@types/debug": "^4.1.12",
     "typescript": "^5.8.3",
     "vitest": "3.2.3",
-    "wrangler": "^4.20.0"
+    "wrangler": "4"
   },
   "dependencies": {
     "@codebam/cf-workers-telegram-bot": "^9.1.1",

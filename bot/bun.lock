@@ -4,21 +4,21 @@
     "": {
       "name": "fimicheck-bot",
       "dependencies": {
-        "@codebam/cf-workers-telegram-bot": "latest",
-        "@logsnag/node": "latest",
-        "axios": "latest",
-        "debug": "latest",
-        "dotenv": "latest",
-        "mongoose": "latest",
-        "telegraf": "latest",
+        "@codebam/cf-workers-telegram-bot": "^9.1.1",
+        "@logsnag/node": "^1.0.1",
+        "axios": "^1.10.0",
+        "debug": "^4.4.1",
+        "dotenv": "^16.5.0",
+        "mongoose": "^8.15.2",
+        "telegraf": "^4.16.3",
       },
       "devDependencies": {
-        "@cloudflare/vitest-pool-workers": "latest",
-        "@cloudflare/workers-types": "latest",
-        "@types/debug": "latest",
-        "typescript": "latest",
-        "vitest": "latest",
-        "wrangler": "latest",
+        "@cloudflare/vitest-pool-workers": "^0.8.38",
+        "@cloudflare/workers-types": "^4.20250614.0",
+        "@types/debug": "^4.1.12",
+        "typescript": "^5.8.3",
+        "vitest": "3.2.3",
+        "wrangler": "4",
       },
     },
   },
@@ -107,7 +107,7 @@
 
     "@img/sharp-libvips-darwin-x64": ["@img/sharp-libvips-darwin-x64@1.0.4", "", { "os": "darwin", "cpu": "x64" }, "sha512-xnGR8YuZYfJGmWPvmlunFaWJsb9T/AO2ykoP3Fz/0X5XV2aoYBPkX6xqCQvUTKKiLddarLaxpzNe+b1hjeWHAQ=="],
 
-    "@img/sharp-libvips-linux-arm": ["@img/sharp-libvips-linux-arm@1.0.5", "", { "os": "linux", "cpu": "arm" }, "sha512-egvcC4ACAOPRNATg/ov8/MnbxFDJqf/pDePbBnuBDcjsI8PssmjoKMAz4LtLaVi+OnSb5FK/yIOamqDwGmXW32g=="],
+    "@img/sharp-libvips-linux-arm": ["@img/sharp-libvips-linux-arm@1.0.5", "", { "os": "linux", "cpu": "arm" }, "sha512-egvcC4ACAOPRNATg/ov8/MnbxFDJqf/pDePbBnuBDcjsI8PssmjoKMAz4LtLaVi+OnSb5FK/yIOamqDwGmXW3w=="],
 
     "@img/sharp-libvips-linux-arm64": ["@img/sharp-libvips-linux-arm64@1.0.4", "", { "os": "linux", "cpu": "arm64" }, "sha512-9B+taZ8DlyyqzZQnoeIvDVR/2F4EbMepXMc/NdVbkzsJbzkUjhXv/70GQJ7tdLA4YJgNP25zukcxpX2/SueNrA=="],
 

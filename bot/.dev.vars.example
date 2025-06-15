@@ -1,0 +1,4 @@
+API_BASE_URL=http://localhost:3000/api/v1
+BOT_TOKEN=temmygirl:)
+WORKER_URL=your-cloudflare-worker-url
+NODE_ENV=development
