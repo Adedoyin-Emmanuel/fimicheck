@@ -54,6 +54,12 @@ const scrapePossibleVehicleImages = async (make: string, color: string) => {
     const response = await axios.get(url, {
       params: {
         q: query,
+        mkt: "en-NG",
+      },
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Linux; Android 10; Infinix X650C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36",
+        "Accept-Language": "en-NG,en;q=0.9",
       },
     });
 
