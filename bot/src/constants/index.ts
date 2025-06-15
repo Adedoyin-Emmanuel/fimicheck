@@ -2,7 +2,6 @@ import { config } from "dotenv";
 
 config();
 
-export const WORKER_URL = "";
 export const START_COMMAND = "start";
 export const ABOUT_COMMAND = "about";
 export const API_BASE_URL = "https://fimicheck.adedoyin.dev/api/v1";
