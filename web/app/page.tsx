@@ -1,28 +1,18 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import axios from "axios";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useState } from "react";
-import { Afacad, Playfair_Display } from "next/font/google";
-import { Loader2, Car, Palette, ChevronLeft, ChevronRight } from "lucide-react";
+import { Afacad } from "next/font/google";
 
-import {
-  InputOTP,
-  InputOTPSlot,
-  InputOTPGroup,
-} from "@/components/ui/input-otp";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Header } from "@/components/header";
+import { ImageModal } from "@/components/image-modal";
+import { VehicleImages } from "@/components/vehicle-images";
+import { VehicleDetails } from "@/components/vehicle-details";
+import { VehicleLookupForm } from "@/components/vehicle-lookup-form";
 
 const afacad = Afacad({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const playwrightDisplay = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -49,15 +39,12 @@ interface ApiResponse {
 }
 
 export default function Home() {
-  const [plateNumber, setPlateNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ApiResponse | null>(null);
   const [selectedImage, setSelectedImage] = useState<VehicleImage | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleLookup = async () => {
-    if (!plateNumber) return;
-
+  const handleLookup = async (plateNumber: string) => {
     setLoading(true);
     try {
       const response = await axios.post<ApiResponse>("/api/v1/lookup", {
@@ -99,6 +86,12 @@ export default function Home() {
     setCurrentImageIndex(prevIndex);
   };
 
+  const handleReset = () => {
+    setResult(null);
+    setSelectedImage(null);
+    setCurrentImageIndex(0);
+  };
+
   return (
     <div className="h-full w-full overflow-x-hidden bg-[#f7f7f8]">
       <Link
@@ -129,183 +122,29 @@ export default function Home() {
         </svg>
       </Link>
       <main className="max-w-5xl mx-auto px-4 py-8 sm:py-16 sm:px-6 lg:px-8">
-        <div className="text-center space-y-4 mb-8 sm:mb-16">
-          <h1
-            className={`text-4xl sm:text-6xl font-black tracking-tight ${playwrightDisplay.className}`}
-          >
-            Fimi<span className="text-[#cb6441]">Check</span>
-          </h1>
-          <p
-            className={`text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto ${afacad.className}`}
-          >
-            Instantly lookup vehicle information using Nigerian plate numbers
-          </p>
-        </div>
+        <Header />
 
         {!result?.data ? (
-          <div className="max-w-2xl mx-auto space-y-8">
-            <div className="flex flex-col gap-6">
-              <div className="flex justify-center">
-                <InputOTP
-                  maxLength={8}
-                  value={plateNumber}
-                  onChange={(value) => setPlateNumber(value.toUpperCase())}
-                  className="gap-1 sm:gap-3"
-                  containerClassName="gap-2 sm:gap-4"
-                >
-                  <InputOTPGroup className="gap-2 sm:gap-4">
-                    {Array.from({ length: 8 }).map((_, i) => (
-                      <InputOTPSlot
-                        key={i}
-                        index={i}
-                        className="w-10 h-10 sm:w-14 sm:h-14 text-base sm:text-lg font-bold border-[1px] outline-none focus:outline-none focus:ring-2 focus:ring-[#cb6441] focus:shadow-none transition-all"
-                      />
-                    ))}
-                  </InputOTPGroup>
-                </InputOTP>
-              </div>
-              <Button
-                onClick={handleLookup}
-                disabled={loading || !plateNumber}
-                className={`h-12 sm:h-14 text-base sm:text-lg font-semibold rounded-lg bg-[#cb6441] hover:bg-[#cb6441]/90 ${afacad.className} cursor-pointer`}
-                size="lg"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Hold up, we&apos;re cooking smtn...
-                  </>
-                ) : (
-                  "Lookup Vehicle"
-                )}
-              </Button>
-            </div>
-          </div>
+          <VehicleLookupForm onLookup={handleLookup} loading={loading} />
         ) : (
-          <div className="space-y-8">
-            <div className="flex justify-end mb-4">
-              <Button
-                onClick={() => {
-                  setResult(null);
-                  setPlateNumber("");
-                }}
-                className={`h-10 sm:h-12 text-sm sm:text-base font-semibold rounded-lg bg-[#cb6441] hover:bg-[#cb6441]/90 ${afacad.className} cursor-pointer`}
-                size="lg"
-              >
-                Check Another Vehicle
-              </Button>
-            </div>
-            <div className="rounded p-6 sm:p-8 border-[1px]">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Car className="w-5 h-5" />
-                    <span className={`${afacad.className} font-medium`}>
-                      Make
-                    </span>
-                  </div>
-                  <p
-                    className={`text-2xl sm:text-3xl font-bold  ${afacad.className}`}
-                  >
-                    {result.data.vehicleInfo.make}
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Palette className="w-5 h-5" />
-                    <span className={`${afacad.className} font-medium`}>
-                      Color
-                    </span>
-                  </div>
-                  <p
-                    className={`text-2xl sm:text-3xl font-bold  ${afacad.className}`}
-                  >
-                    {result.data.vehicleInfo.color}
-                  </p>
-                </div>
-              </div>
-            </div>
-            {result.data.images && result.data.images.length > 0 && (
-              <div className="rounded p-6 sm:p-8 border-[1px]">
-                <h3
-                  className={`text-xl sm:text-2xl font-semibold mb-6 ${afacad.className}`}
-                >
-                  Vehicle Images
-                </h3>
-                <ScrollArea className="h-[400px] sm:h-[600px] w-full rounded-lg">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4">
-                    {result.data.images.map((image, index) => (
-                      <div
-                        key={index}
-                        className="group relative aspect-[4/3] overflow-hidden rounded-lg cursor-pointer"
-                        onClick={() => handleImageClick(image, index)}
-                      >
-                        <img
-                          src={image.url}
-                          alt={image.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute bottom-0 left-0 right-0 bg-[#cb6441] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                          <div className="p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <p
-                              className={`text-sm sm:text-base text-white font-semibold line-clamp-2 ${afacad.className}`}
-                            >
-                              {image.title}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </ScrollArea>
-              </div>
-            )}
-          </div>
+          <>
+            <VehicleDetails
+              vehicleInfo={result.data.vehicleInfo}
+              onReset={handleReset}
+            />
+            <VehicleImages
+              images={result.data.images}
+              onImageClick={handleImageClick}
+            />
+          </>
         )}
 
-        <Dialog
-          open={!!selectedImage}
-          onOpenChange={() => setSelectedImage(null)}
-        >
-          <DialogContent className="max-w-4xl p-0 bg-white border-2 border-[#cb6441]/20">
-            {selectedImage && (
-              <div className="relative">
-                <img
-                  src={selectedImage.url}
-                  alt={selectedImage.title}
-                  className="w-full h-[40vh] sm:h-[60vh] object-contain rounded-t-lg"
-                />
-                <div className="absolute inset-y-0 left-0 flex items-center">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-14 w-14 sm:h-20 sm:w-20 rounded-full bg-[#cb6441] hover:bg-[#cb6441]/90 text-white shadow-lg"
-                    onClick={handlePrevImage}
-                  >
-                    <ChevronLeft className="h-8 w-8 sm:h-10 sm:w-10" />
-                  </Button>
-                </div>
-                <div className="absolute inset-y-0 right-0 flex items-center">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-14 w-14 sm:h-20 sm:w-20 rounded-full bg-[#cb6441] hover:bg-[#cb6441]/90 text-white shadow-lg"
-                    onClick={handleNextImage}
-                  >
-                    <ChevronRight className="h-8 w-8 sm:h-10 sm:w-10" />
-                  </Button>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#cb6441] rounded-b-lg">
-                  <p
-                    className={`text-white text-lg sm:text-xl font-medium ${afacad.className}`}
-                  >
-                    {selectedImage.title}
-                  </p>
-                </div>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
+        <ImageModal
+          selectedImage={selectedImage}
+          onClose={() => setSelectedImage(null)}
+          onNext={handleNextImage}
+          onPrev={handlePrevImage}
+        />
       </main>
       <footer className="py-6 text-center text-[15px] text-muted-foreground">
         <p className={afacad.className}>
