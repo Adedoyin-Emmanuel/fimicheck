@@ -21,7 +21,7 @@ export function Header() {
       <p
         className={`text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto ${afacad.className}`}
       >
-        Instantly lookup vehicle information using Nigerian plate numbers
+        Instantly look up Nigerian vehicle info using a plate number.
       </p>
     </div>
   );

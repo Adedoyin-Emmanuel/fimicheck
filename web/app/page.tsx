@@ -132,6 +132,7 @@ export default function Home() {
               vehicleInfo={result.data.vehicleInfo}
               onReset={handleReset}
             />
+            <br />
             <VehicleImages
               images={result.data.images}
               onImageClick={handleImageClick}
