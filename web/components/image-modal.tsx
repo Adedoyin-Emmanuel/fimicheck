@@ -35,26 +35,26 @@ export function ImageModal({
             <img
               src={selectedImage.url}
               alt={selectedImage.title}
-              className="w-full h-[40vh] sm:h-[60vh] object-contain rounded-t-lg"
+              className="w-full h-[50vh] sm:h-[70vh] object-contain rounded-t-lg"
             />
             <div className="absolute inset-y-0 left-0 flex items-center">
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-14 w-14 sm:h-20 sm:w-20 rounded-full bg-[#cb6441] hover:bg-[#cb6441]/90 text-white shadow-lg"
+                className="h-10 w-10 sm:h-14 sm:w-14 rounded-full bg-[#cb6441] hover:bg-[#cb6441]/90 text-white shadow-lg"
                 onClick={onPrev}
               >
-                <ChevronLeft className="h-8 w-8 sm:h-10 sm:w-10" />
+                <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
               </Button>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center">
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-14 w-14 sm:h-20 sm:w-20 rounded-full bg-[#cb6441] hover:bg-[#cb6441]/90 text-white shadow-lg"
+                className="h-10 w-10 sm:h-14 sm:w-14 rounded-full bg-[#cb6441] hover:bg-[#cb6441]/90 text-white shadow-lg"
                 onClick={onNext}
               >
-                <ChevronRight className="h-8 w-8 sm:h-10 sm:w-10" />
+                <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
               </Button>
             </div>
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#cb6441] rounded-b-lg">

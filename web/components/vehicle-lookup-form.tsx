@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Afacad } from "next/font/google";
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 
 import {
   InputOTP,
@@ -40,12 +41,15 @@ export function VehicleLookupForm({
             onChange={(value) => setPlateNumber(value.toUpperCase())}
             className="gap-1 sm:gap-3"
             containerClassName="gap-2 sm:gap-4"
+            inputMode="text"
+            pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
           >
             <InputOTPGroup className="gap-2 sm:gap-4">
               {Array.from({ length: 8 }).map((_, i) => (
                 <InputOTPSlot
                   key={i}
                   index={i}
+                  inputMode="text"
                   className="w-10 h-10 sm:w-14 sm:h-14 text-base sm:text-lg font-bold border-[1px] outline-none focus:outline-none focus:ring-2 focus:ring-[#cb6441] focus:shadow-none transition-all"
                 />
               ))}

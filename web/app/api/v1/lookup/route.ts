@@ -49,7 +49,7 @@ const scrapePlateNumber = async (plateNumber: string) => {
 const scrapePossibleVehicleImages = async (make: string, color: string) => {
   try {
     const url = "https://www.bing.com/images/search";
-    const query = `${make} ${color}`;
+    const query = `${make} ${color} Nigeria`;
 
     const response = await axios.get(url, {
       params: {
