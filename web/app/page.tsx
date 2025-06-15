@@ -1,18 +1,21 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { Button } from "@/components/ui/button";
+import axios from "axios";
+import Link from "next/link";
+import { toast } from "sonner";
+import { useState } from "react";
+import { Afacad, Playfair_Display } from "next/font/google";
+import { Loader2, Car, Palette, ChevronLeft, ChevronRight } from "lucide-react";
+
 import {
   InputOTP,
-  InputOTPGroup,
   InputOTPSlot,
+  InputOTPGroup,
 } from "@/components/ui/input-otp";
-import { useState } from "react";
-import axios from "axios";
-import { Loader2, Car, Palette, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { toast } from "sonner";
-import { Afacad, Playfair_Display } from "next/font/google";
 
 const afacad = Afacad({
   subsets: ["latin"],
@@ -57,14 +60,11 @@ export default function Home() {
 
     setLoading(true);
     try {
-      const response = await axios.post<ApiResponse>(
-        "http://localhost:2800/v1/lookup",
-        {
-          plateNumber,
-        }
-      );
+      const response = await axios.post<ApiResponse>("/api/v1/lookup", {
+        plateNumber,
+      });
       setResult(response.data);
-    } catch (err) {
+    } catch {
       toast.error("Failed to lookup plate number. Please try again.", {
         style: {
           background: "white",
@@ -73,7 +73,6 @@ export default function Home() {
           boxShadow: "0 4px 12px rgba(203, 100, 65, 0.05)",
         },
       });
-      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -102,12 +101,12 @@ export default function Home() {
 
   return (
     <div className="h-full w-full overflow-x-hidden bg-[#f7f7f8]">
-      <a
+      <Link
         href="https://github.com/adedoyin-emmanuel/fimicheck"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed top-0 right-0 z-50"
-        aria-label="View source on GitHub"
+        aria-label="View source code on GitHub"
       >
         <svg
           width="80"
@@ -128,7 +127,7 @@ export default function Home() {
             className="origin-[130px_106px] scale-[0.7]"
           />
         </svg>
-      </a>
+      </Link>
       <main className="max-w-5xl mx-auto px-4 py-8 sm:py-16 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-8 sm:mb-16">
           <h1
