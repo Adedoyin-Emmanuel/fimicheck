@@ -3,14 +3,16 @@ import { Update } from "telegraf/types";
 import { Context, Telegraf } from "telegraf";
 
 import { logger } from "../utils";
+import { WORKER_URL } from "../constants";
 
 config();
 
-const production = async (req: Request, bot: Telegraf<Context<Update>>, workerUrl: string) => {
+const production = async (req: Request, bot: Telegraf<Context<Update>>) => {
 	try {
 		logger("Bot running in production mode");
 
 		const getWebhookInfo = await bot.telegram.getWebhookInfo();
+		const workerUrl = WORKER_URL;
 
 		if (getWebhookInfo.url !== workerUrl) {
 			logger(`deleting webhook ${workerUrl}`);

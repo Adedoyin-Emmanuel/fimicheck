@@ -18,6 +18,6 @@ export const startCloudflareWorker = async (request: Request, env: Env) => {
 	if (env.NODE_ENV === "development") {
 		await development(bot);
 	} else {
-		await production(request, bot, env.WORKER_URL);
+		await production(request, bot);
 	}
 };
