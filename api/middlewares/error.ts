@@ -11,11 +11,6 @@ const useErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  console.log("Error instance:", err instanceof Error);
-  console.log("Error name:", err.name);
-  console.log("Error message:", err.message);
-  console.log("Error stack:", err.stack);
-
   if (err instanceof Joi.ValidationError) {
     return response(res, 400, err?.details[0]?.message as string);
   }
