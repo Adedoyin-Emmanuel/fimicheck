@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased min-h-screen bg-[#f7f7f8]">
+        <GoogleAnalytics gaId="G-CT3L9DXKT8" />
         <Toaster position="top-center" />
         {children}
       </body>
