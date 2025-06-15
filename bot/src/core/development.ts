@@ -1,9 +1,7 @@
-import { Context, Telegraf } from "telegraf";
-import { Update } from "telegraf/types";
-import { logger } from "../utils";
-import { REQUEST_ERROR_WITH_SUPPORT } from "../constants/errors";
-import { sendTgMessage } from "../utils";
-import { connectToDb } from "../utils";
+import { Update } from 'telegraf/types';
+import { Context, Telegraf } from 'telegraf';
+
+import { logger } from '../utils';
 
 const handleRateLimit = async (error: any) => {
 	if (error.code === 429) {
@@ -17,25 +15,24 @@ const handleRateLimit = async (error: any) => {
 
 const development = async (bot: Telegraf<Context<Update>>) => {
 	try {
-		console.log("Starting development");
+		console.log('Starting development');
 		const botInfo = (await bot.telegram.getMe()).username;
 
-		logger("Bot is running on dev mode");
+		logger('Bot is running on dev mode');
 		logger(`${botInfo} deleting webhook`);
 		await bot.telegram.deleteWebhook();
 		logger(`${botInfo} starting polling`);
-		await connectToDb();
 		await bot.launch();
 
-		process.once("SIGINT", () => bot.stop("SIGINT"));
-		process.once("SIGTERM", () => bot.stop("SIGTERM"));
+		process.once('SIGINT', () => bot.stop('SIGINT'));
+		process.once('SIGTERM', () => bot.stop('SIGTERM'));
 	} catch (error: any) {
 		const shouldRetry = await handleRateLimit(error);
 		if (shouldRetry) {
-			logger("Retrying bot launch after rate limit...");
+			logger('Retrying bot launch after rate limit...');
 			await development(bot);
 		} else {
-			logger("Failed to start bot:", error);
+			logger('Failed to start bot:', error);
 		}
 	}
 };

@@ -1,7 +1,5 @@
 import { Context } from 'telegraf';
 
-import { rateLimiter } from '../config';
-
 export const replyToMessage = (ctx: Context, messageId: number, string: string) => {
 	ctx.reply(string, {
 		reply_parameters: { message_id: messageId },
@@ -40,10 +38,6 @@ export async function sendTgMessage(
 				chat_id: chatId,
 			},
 			parse_mode: parseMode,
-		});
-	} else {
-		rateLimiter.addToQueue('Send Telegram Message', async () => {
-			await ctx.telegram.sendMessage(chatId, message);
 		});
 	}
 }

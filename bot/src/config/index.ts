@@ -1,5 +1,3 @@
-import bot from "./bot";
-import logsnag from "./logsnag";
-import rateLimiter from "./rateLimit";
+import bot from './bot';
 
-export { bot, logsnag, rateLimiter };
+export { bot };
