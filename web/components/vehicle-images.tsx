@@ -49,7 +49,7 @@ export function VehicleImages({ images, onImageClick }: VehicleImagesProps) {
               <img
                 src={image.url}
                 alt={image.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-contain bg-gray-100 transition-transform duration-500 group-hover:scale-105"
                 onError={() => handleImageError(index)}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-[#cb6441] opacity-0 group-hover:opacity-100 transition-all duration-300">
