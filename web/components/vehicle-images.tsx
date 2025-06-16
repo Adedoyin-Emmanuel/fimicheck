@@ -1,5 +1,6 @@
 import { Afacad } from "next/font/google";
 import { useState } from "react";
+import Image from "next/image";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -46,10 +47,12 @@ export function VehicleImages({ images, onImageClick }: VehicleImagesProps) {
               className="group relative aspect-[4/3] overflow-hidden rounded-lg cursor-pointer"
               onClick={() => onImageClick(image, index)}
             >
-              <img
+              <Image
                 src={image.url}
                 alt={image.title}
-                className="w-full h-full object-contain bg-gray-100 transition-transform duration-500 group-hover:scale-105"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-contain bg-gray-100 transition-transform duration-500 group-hover:scale-105"
                 onError={() => handleImageError(index)}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-[#cb6441] opacity-0 group-hover:opacity-100 transition-all duration-300">
