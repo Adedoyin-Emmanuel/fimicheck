@@ -32,3 +32,8 @@ FimiCheck is Nigerian plate number lookup tool.
 ![Img 8](/md-assets/img-8.png)
 
 ![Img 9](/md-assets/img-9.png)
+
+## License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.  
+Read more here: [LICENSE](./LICENSE)
