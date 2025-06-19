@@ -11,6 +11,13 @@ FimiCheck is Nigerian plate number lookup tool.
 - `api`: REST API (TypeScript, Node.js)
 - `tg-bot`: Telegram Bot (Cloudflare Worker, TypeScript, Wrangler)
 
+
+## How It Works.
+
+[Watch How It Works Here](https://youtube.com/shorts/guafj56_RjM?si=29A4WpNhznUzCFbs)
+
+The concept is quite straightforward. Most vehicle plate number lookup tools provide the vehicle's make and color, such as [FRSC](https://nvis.frsc.gov.ng/vehiclemanagement/VerifyPlateNo), but they do not offer images of the vehicle. The idea is that once we obtain the vehicle's make and color, we can perform a search using Bing's image search. We will tailor the results to display only Nigerian cars that match the specified make and color, allowing us to retrieve possible images of the vehicle. That way, we get the vehicle details and possible images of the vehicle.
+
 ## Images
 
 ![FimiCheck Logo](/md-assets/logo.png)
